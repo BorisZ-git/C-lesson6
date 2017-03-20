@@ -19,9 +19,33 @@ namespace HomeWork
         static void Main(string[] args)
         {
             db = new List<Students>();
-            FullList();
-            Console.WriteLine(db[1].Age);
-            Console.WriteLine(db[1].Course);
+            FullList();            
+            #region a
+            int a = 0;
+            foreach (var e in db)
+            {
+                if (e.Course == 5 || e.Course == 6)
+                    a++;
+            }
+            Console.WriteLine(a);
+            #endregion
+            #region b
+            int course1 = 0;
+            int course2 = 0;
+            int course3 = 0;
+
+            foreach (var e in db)
+            {
+                if (e.Age == 18) course1++;
+                if (e.Age == 19) course2++;
+                if (e.Age == 20) course3++;
+            }
+            Console.WriteLine($"Первокуры: {course1}\nФторы: {course2}\nТретий:{course3}");
+            #endregion
+            #region c
+
+            #endregion
+
         }
         static void FullList()
         {
