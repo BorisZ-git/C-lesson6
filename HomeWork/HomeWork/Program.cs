@@ -15,15 +15,39 @@ namespace HomeWork
 {
     class Program
     {
+        static List<Students> db;
         static void Main(string[] args)
         {
-            //Students st = new Students();
-            //for (int i = 0; i < st.students.Length; i++)
-            //    Console.WriteLine($"student: {st.students[i]} = age = {st.age[i]}");
-            List<Students> st = new List<Students>();
-            foreach (var e in st)
-                Console.WriteLine(e);
-            
+            db = new List<Students>();
+            FullList();
+            Console.WriteLine(db[1].Age);
+            Console.WriteLine(db[1].Course);
         }
+        static void FullList()
+        {
+            Random r = new Random();
+            for (int i = 0; i < 100; i++)
+            {
+                db.Add(new Students()
+                {
+                    Student = $" Student : {i + 1}",
+                    Age = r.Next(18, 23),                    
+                });
+                db[i].Course = FullCourse(db[i]);
+            }
+        }
+        static int FullCourse(Students db)
+        {
+            int count = 0;
+            if (db.Age == 18) count = 1;
+            else if (db.Age == 19) count = 2;
+            else if (db.Age == 20) count = 3;
+            else if (db.Age == 21) count = 4;
+            else if (db.Age == 22) count = 5;
+            else if (db.Age == 23) count = 6;
+            return count;
+        }
+
     }
-}
+    }
+
