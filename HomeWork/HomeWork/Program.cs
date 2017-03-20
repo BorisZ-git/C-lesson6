@@ -17,9 +17,13 @@ namespace HomeWork
     {
         static void Main(string[] args)
         {
-            Students st = new Students();
-            for (int i = 0; i < st.students.Length; i++)
-                Console.WriteLine($"student: {st.students[i]} = age = {st.age[i]}");
+            //Students st = new Students();
+            //for (int i = 0; i < st.students.Length; i++)
+            //    Console.WriteLine($"student: {st.students[i]} = age = {st.age[i]}");
+            List<Students> st = new List<Students>();
+            foreach (var e in st)
+                Console.WriteLine(e);
+            
         }
     }
 }

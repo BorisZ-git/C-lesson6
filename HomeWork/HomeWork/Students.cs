@@ -8,26 +8,33 @@ namespace HomeWork
 {
     class Students
     {
-        public int[] students;
-        public int[] age;
-        int[] course;
-        Random r = new Random();        
-        public Students()
+        public string Student { get; set; }
+        public int Age { get; set; }
+        public int Course { get; set; }
+        List<Students> db = new List<Students>();
+        public void FullList()
         {
-            students = new int[100];
-            age = new int[students.Length];
-            course = new int[students.Length];           
-            for (int i =0;i< students.Length; i++)
+            Random r = new Random();
+            for (int i = 0; i < 100; i++)
             {
-                students[i] = i + 1;
-                age[i] = r.Next(18, 23);
-                if (age[i] == 18) course[i] = 1;
-                else if (age[i] == 19) course[i] = 2;
-                else if (age[i] == 20) course[i] = 3;
-                else if (age[i] == 21) course[i] = 4;
-                else if (age[i] == 22) course[i] = 5;
-                else if (age[i] == 23) course[i] = 6;
+                db.Add(new Students()
+                {
+                    Student = $" Student : {i + 1}",
+                    Age = r.Next(18, 23),
+                    Course = FullCourse(db[i])
+                });
             }
+        }
+        public int FullCourse(Students db)
+        {
+            int count = 0;
+            if (db.Age == 18) count = 1;
+            else if (db.Age == 19) count = 2;
+            else if (db.Age == 20) count = 3;
+            else if (db.Age == 21) count = 4;
+            else if (db.Age == 22) count = 5;
+            else if (db.Age == 23) count = 6;
+            return count;
         }
     }
 }
