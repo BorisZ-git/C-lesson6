@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 /* Boris Z
  * 3. Подсчитайте количество студентов:
 а) учащихся на 5 и 6 курсах;
-б)*подсчитайте сколько студентов в возрасте от 18 до 20 лет на каком курсе учатся;
-в) отсортируйте список по возрасту студента
-г) *отсортируйте список по курсу и возрасту студента
+b)*подсчитайте сколько студентов в возрасте от 18 до 20 лет на каком курсе учатся;
+c) отсортируйте список по возрасту студента
+d) *отсортируйте список по курсу и возрасту студента
  * */
 
 namespace HomeWork
@@ -19,7 +19,7 @@ namespace HomeWork
         static void Main(string[] args)
         {
             db = new List<Students>();
-            FullList();            
+            Students.FullList(db);            
             #region a
             int a = 0;
             foreach (var e in db)
@@ -43,35 +43,21 @@ namespace HomeWork
             Console.WriteLine($"Первокуры: {course1}\nФторы: {course2}\nТретий:{course3}");
             #endregion
             #region c
-
+            db.Sort(Students.StudentsCompareAge);
+            foreach (var e in db)
+                Console.WriteLine($"{e.Age}  ");
+            #endregion
+            #region d
+            //Для большей наглядности сортировки поменяем значение
+            for (int i = 0; i < 50; i++)
+                db[i].Course = 3;
+            //Создаем отсортированый список
+            var sortDB = Students.StCom(db);
+            foreach (var e in sortDB)
+                Console.WriteLine($"{e.Student}: age - {e.Age}; course - {e.Course}");
             #endregion
 
         }
-        static void FullList()
-        {
-            Random r = new Random();
-            for (int i = 0; i < 100; i++)
-            {
-                db.Add(new Students()
-                {
-                    Student = $" Student : {i + 1}",
-                    Age = r.Next(18, 23),                    
-                });
-                db[i].Course = FullCourse(db[i]);
-            }
-        }
-        static int FullCourse(Students db)
-        {
-            int count = 0;
-            if (db.Age == 18) count = 1;
-            else if (db.Age == 19) count = 2;
-            else if (db.Age == 20) count = 3;
-            else if (db.Age == 21) count = 4;
-            else if (db.Age == 22) count = 5;
-            else if (db.Age == 23) count = 6;
-            return count;
-        }
-
     }
     }
 
